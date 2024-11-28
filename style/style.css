@@ -20,8 +20,8 @@ body.ảark-mode {
 
 
 body#background {
-    background-image: url('./574675.jpg');
-    background-size: cover;
+    background-image: url('./1.png');
+    background-size: cover; 
     /* background-position: center; */
     background-repeat: repeat;
     height: auto;
@@ -83,6 +83,7 @@ span {
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.5s, color 0.5s;
+    cursor: pointer;
 }
 
 /* Media query for smaller screens */
@@ -112,14 +113,21 @@ footer {
     left: 0;
     width: 100%;
     background-color: #333;
-    color: white;
+    color: #f2f2f2;
     text-align: left; /* Căn văn bản về bên trái */
     padding: 10px;
     box-shadow: 0 -2px 5px rgba(0,0,0,0.2); /* Hiệu ứng đổ bóng cho footer */
 }
 
 footer p {
-    margin: 0;
-    padding-left: 20px; /* Khoảng cách bên trái cho nội dung */
+    margin: 5px;
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+footer .clock1 {
+    font-family: 'JetBrains Mono', monospace;
+
 }
 

@@ -3,119 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-    /* Light Mode (Mặc định) */
-    body {
-        background-color: #f0f0f0;
-        color: #000;
-    }
-
-    /* Night Mode */
-    body.dark-mode {
-        background-color: #2c3e50;
-        color: #ecf0f1;
-    }
-
-    .theme-switch {
-        display: flex;
-        gap: 10px; /* Khoảng cách giữa các biểu tượng */
-    }
-
-    .icon {
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-    }
-
-    /* Các điều chỉnh màu sắc khác khi ở Night Mode */
-    body.dark-mode .weather-box {
-        background-color: #34495e;
-        color: #ecf0f1;
-    }
-
-    /* Điều chỉnh màu cho các hộp thời tiết */
-    .weather-box {
-        background-color: #fff;
-        color: #000;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
-        margin: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    body.dark-mode .weather-box {
-        background-color: #34495e;
-        color: #ecf0f1;
-    }
-
-
-    </style>
+    <title>Test Fetch</title>
 </head>
-<body id="background">
-    <header>
-        <h1>Measure real-time weather factors</h1>
-        <div class="theme-switch">
-            <img src="style/moon.png" alt="Night Mode" id="moon-icon" class="icon">
-            <img src="style/sun.png" alt="Light Mode" id="sun-icon" class="icon" style="display: none;">
-        </div>
-    </header>
-
-    <!-- Nội dung khác của trang -->
-    <div class="clock">
-        <div class="time">
-            <span id="hours">00</span>
-            <span>:</span>
-            <span id="minutes">00</span>
-            <span>:</span>
-            <span id="seconds">00</span>
-        </div>
-    </div>
-
-    <br>
-
-    <div class="weather-container">
-        <div class="weather-box">
-            <div class="icon">🌡️</div>
-            <h3>Temperatures</h3>
-            <p>36°C</p>
-        </div>
-        <!-- Các phần còn lại -->
-    </div>
-</body>
+<body>
+    <button id="fetchButton">Fetch Data</button>
+    <div id="result"></div>
 
     <script>
-        const moonIcon = document.getElementById('moon-icon');
-        const sunIcon = document.getElementById('sun-icon');
-        const body = document.body;
-
-        // Kiểm tra trạng thái từ localStorage khi tải trang
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark-mode');
-            moonIcon.style.display = 'none';
-            sunIcon.style.display = 'block';
-        }
-
-        // Chuyển sang Night Mode và lưu trạng thái
-        moonIcon.addEventListener('click', () => {
-            body.classList.add('dark-mode');
-            moonIcon.style.display = 'none';
-            sunIcon.style.display = 'block';
-            localStorage.setItem('theme', 'dark');  // Lưu vào localStorage
+        document.getElementById("fetchButton").addEventListener("click", () => {
+            fetch("http://127.0.0.1:5000/sheet")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    document.getElementById("result").textContent = `Error: ${error.message}`;
+                });
         });
-
-        // Chuyển sang Light Mode và lưu trạng thái
-        sunIcon.addEventListener('click', () => {
-            body.classList.remove('dark-mode');
-            sunIcon.style.display = 'none';
-            moonIcon.style.display = 'block';
-            localStorage.setItem('theme', 'light');  // Lưu vào localStorage
-        });
-
-
-
     </script>
 </body>
-
 </html>

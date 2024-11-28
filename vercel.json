@@ -1,0 +1,10 @@
+{
+    "builds": [
+      { "src": "api/get_weather_data.py", "use": "@vercel/python" },
+      { "src": "api/sync_weather.py", "use": "@vercel/python" }
+    ],
+    "routes": [
+      { "src": "/api/weather-data", "dest": "api/get_weather_data.py" },
+      { "src": "/api/sync-weather", "dest": "api/sync_weather.py" }
+    ]
+  }
