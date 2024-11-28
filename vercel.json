@@ -1,9 +1,11 @@
 {
     "builds": [
+      { "src": "index.html", "use": "@vercel/static" },
       { "src": "api/get_weather_data.py", "use": "@vercel/python" },
       { "src": "api/sync_weather.py", "use": "@vercel/python" }
     ],
     "routes": [
+      { "src": "/(.*)", "dest": "/index.html" },
       { "src": "/api/weather-data", "dest": "api/get_weather_data.py" },
       { "src": "/api/sync-weather", "dest": "api/sync_weather.py" }
     ]
