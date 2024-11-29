@@ -5,13 +5,13 @@
       { "src": "js/main.js", "use": "@vercel/static" },
       { "src": "style/style.css", "use": "@vercel/static" },
       { "src": "api/get_weather_data.py", "use": "@vercel/python" },
-      { "src": "api/sync_weather.py", "use": "@vercel/python" }
+      { "src": "api/sync_sheets.py", "use": "@vercel/python" }
     ],
     "routes": [
       { "src": "/(.*)", "dest": "/index.html" },
-      { "src": "/style/(.*)", "dest": "/css/$1"},
+      { "src": "/style/(.*)", "dest": "/style/$1"},
       { "src": "/js/(.*)", "dest": "/js/$1" },
-      { "src": "/api/weather-data", "dest": "api/get_weather_data.py" },
-      { "src": "/api/sync-weather", "dest": "api/sync_weather.py" }
+      { "src": "/api/get-weather-data", "dest": "api/get_weather_data.py" },
+      { "src": "/api/sync-sheets", "dest": "api/sync_sheets.py" }
     ]
-  }
+}
