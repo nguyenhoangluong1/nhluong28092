@@ -1,6 +1,9 @@
+
 {
   "version": 2,
   "routes": [
+    { "src": "/style/(.*)", "dest": "/style/$1" },
+    { "src": "/js/(.*)", "dest": "/js/$1" },
     { "src": "/api/get-weather-data", "dest": "/api/get_weather_data.py" },
     { "src": "/api/sync-sheets", "dest": "/api/sync_sheets.py" },
     { "src": "/(.*)", "dest": "/index.html" }
