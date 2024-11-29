@@ -1,4 +1,4 @@
-from utils.weather_async import sync_weather_data
+from utils.weather_sync import sync_weather_data
 from flask import jsonify
 
 def handler(request):
